@@ -19,15 +19,14 @@ jobs:
           npm install
           npm run build
 
-      # 3. Deploy via SFTP
+      # 3. Deploy via SFTP using SSH key
       - name: Deploy to SuperHosting via SFTP
         uses: appleboy/scp-action@v0.1.3
         with:
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
           port: 1022
-          protocol: sftp
+          key: ${{ secrets.SFTP_PRIVATE_KEY }}
           source: "dist/"
           target: "/public_html/"
           rm: true
