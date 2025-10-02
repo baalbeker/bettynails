@@ -30,4 +30,3 @@ jobs:
           source: "dist/"
           target: "/public_html/"
           rm: true          # remove existing files before upload
-          recursive: true   # upload folder contents recursively
