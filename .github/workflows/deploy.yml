@@ -9,11 +9,11 @@ jobs:
   sftp-deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout repo
+      # 1. Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Install dependencies and build
+      # 2. Build project
       - name: Build project
         run: |
           npm install
@@ -21,12 +21,12 @@ jobs:
 
       # 3. Deploy via SFTP
       - name: Deploy to SuperHosting via SFTP
-        uses: appleboy/ssh-action@v0.1.8
+        uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.SFTP_HOST }}
-          port: ${{ secrets.SFTP_PORT }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
           source: "dist/"
           target: "/public_html/"
           rm: true          # remove existing files before upload
