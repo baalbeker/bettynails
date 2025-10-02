@@ -27,8 +27,8 @@ jobs:
           username: ${{ secrets.FTPS_USERNAME }}
           password: ${{ secrets.FTPS_PASSWORD }}
           port: ${{ secrets.FTPS_PORT }}
-          local-dir: ./dist/
-          server-dir: /public_html/
+          local-dir: ./dist
+          server-dir: /public_html
           protocol: ftps
           secure: true       # Use explicit FTP over TLS
           passive: true      # Recommended for FTPS
