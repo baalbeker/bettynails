@@ -1,0 +1,27 @@
+name: Deploy to SuperHosting FTP
+
+on:
+  push:
+    branches:
+      - main  # or whichever branch you want to trigger on
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build project
+        run: |
+          npm install
+          npm run build   # or your build command
+
+      - name: Upload to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.5.0
+        with:
+          server: zebra.superhosting.bg
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist   # folder to upload (your build folder)
+          server-dir: /public_html  # folder on FTP server

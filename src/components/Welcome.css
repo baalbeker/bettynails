@@ -1,0 +1,36 @@
+/* Welcome.css */
+.welcome-message {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the message both vertically and horizontally */
+    background-color: rgba(255, 255, 255, 0.9); /* White background with some transparency */
+    color: black; /* Text color black */
+    padding: 20px 30px;
+    border-radius: 7px;
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 1;
+    animation: fadeOut 3s ease-out forwards; /* Increased duration and added ease-out for smoother fade */
+    z-index: 9999;
+    text-align: center;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1); /* Start with normal size */
+    }
+    40% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.05); /* Slightly enlarge for a more dynamic effect */
+    }
+    80% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.95); /* Shrink slightly */
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1); /* End at normal size */
+    }
+}
