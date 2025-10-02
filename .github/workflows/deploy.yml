@@ -1,4 +1,4 @@
-name: Deploy to SuperHosting FTP
+name: Deploy TSX Project via SFTP
 
 on:
   push:
@@ -6,22 +6,28 @@ on:
       - main
 
 jobs:
-  ftp-deploy:
+  sftp-deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. Checkout repo
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 2. Install dependencies and build
       - name: Build project
         run: |
           npm install
           npm run build
 
-      - name: Upload to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      # 3. Deploy via SFTP
+      - name: Deploy to SuperHosting via SFTP
+        uses: appleboy/ssh-action@v0.1.8
         with:
-          server: zebra.superhosting.bg
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /public_html/
+          host: ${{ secrets.SFTP_HOST }}
+          port: ${{ secrets.SFTP_PORT }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          source: "dist/"
+          target: "/public_html/"
+          rm: true          # remove existing files before upload
+          recursive: true   # upload folder contents recursively
