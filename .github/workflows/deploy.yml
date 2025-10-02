@@ -1,4 +1,4 @@
-name: Deploy TSX Project via SFTP
+name: Deploy TSX Project via FTPS
 
 on:
   push:
@@ -6,10 +6,10 @@ on:
       - main
 
 jobs:
-  sftp-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout code
+      # 1. Checkout repo
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -19,14 +19,17 @@ jobs:
           npm install
           npm run build
 
-      # 3. Deploy via SFTP using SSH key
-      - name: Deploy to SuperHosting via SFTP
-        uses: appleboy/scp-action@v0.1.3
+      # 3. Deploy via FTPS
+      - name: Deploy to SuperHosting via FTPS
+        uses: jakejarvis/ftp-deploy@v1
         with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          port: 1022
-          key: ${{ secrets.SFTP_PRIVATE_KEY }}
-          source: "dist/"
-          target: "/public_html/"
-          rm: true
+          server: ${{ secrets.FTPS_HOST }}
+          username: ${{ secrets.FTPS_USERNAME }}
+          password: ${{ secrets.FTPS_PASSWORD }}
+          port: ${{ secrets.FTPS_PORT }}
+          local-dir: ./dist
+          server-dir: /public_html
+          protocol: ftps
+          secure: true       # Use explicit FTP over TLS
+          passive: true      # Recommended for FTPS
+          parallel: 4
