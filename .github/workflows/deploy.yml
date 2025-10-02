@@ -26,7 +26,8 @@ jobs:
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: 1022
+          port: 22
+          protocol: sftp        # explicitly use SFTP
           source: "dist/"
           target: "/public_html/"
-          rm: true          # remove existing files before upload
+          rm: true
