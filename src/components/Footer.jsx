@@ -35,7 +35,7 @@ function Footer() {
       <div className="footer-content">
         <div className="footer-main">
           <motion.div className="footer-section footer-brand" variants={itemVariants}>
-            <h3>BettNails</h3>
+            <h3>BettiiNails</h3>
             <p>Вашата красота е наша страст. Създаваме уникални дизайни за нокти, които отразяват вашата индивидуалност.</p>
             <div className="footer-social">
               <motion.a
