@@ -28,7 +28,7 @@ jobs:
           password: ${{ secrets.FTPS_PASSWORD }}
           port: 21
           protocol: ftps
-          local-dir: ./dist
+          local-dir: ./dist/
           server-dir: /public_html/
           security: loose          # Prevents certificate validation issues
           timeout: 60000
