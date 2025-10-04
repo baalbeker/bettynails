@@ -11,25 +11,24 @@ jobs:
     steps:
       # 1. Checkout repo
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2. Build project
       - name: Build project
         run: |
-          npm install
+          npm ci
           npm run build
 
       # 3. Deploy via FTPS
       - name: Deploy to SuperHosting via FTPS
-        uses: jakejarvis/ftp-deploy@v1
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTPS_HOST }}
           username: ${{ secrets.FTPS_USERNAME }}
           password: ${{ secrets.FTPS_PASSWORD }}
-          port: ${{ secrets.FTPS_PORT }}
-          local-dir: ./dist
-          server-dir: /public_html
+          port: 21
           protocol: ftps
-          secure: true       # Use explicit FTP over TLS
-          passive: true      # Recommended for FTPS
-          parallel: 4
+          local-dir: ./dist
+          server-dir: /public_html/
+          security: loose          # Prevents certificate validation issues
+          timeout: 60000
