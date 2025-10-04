@@ -19,7 +19,7 @@ jobs:
           npm ci
           npm run build
 
-      # 3. Deploy via FTPS
+      # 3. Deploy via FTPSs
       - name: Deploy to SuperHosting via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
