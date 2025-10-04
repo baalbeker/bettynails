@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout repo
+      # 1. Checkout repoo
       - name: Checkout code
         uses: actions/checkout@v4
 
