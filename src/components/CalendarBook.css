@@ -255,7 +255,6 @@
   gap: 12px;
   grid-auto-flow: row;
 }
-
 .booked-slot-item {
   background-color: #f8f9fa;
   padding: 12px 8px;
@@ -278,6 +277,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Regular booked slots (purple gradient) */
 .booked-slot-item.booked {
   background: linear-gradient(135deg, #6f48eb 0%, #8b5cf6 100%);
   color: white;
@@ -288,6 +288,14 @@
 
 .booked-slot-item.booked:hover {
   background: linear-gradient(135deg, #5b39d8 0%, #7c3aed 100%);
+}
+
+/* Gmail bookings (aqua gradient) */
+.booked-slot-item.gmail-booking {
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  color: white;
+  font-weight: 600;
+  border: 2px solid #00a3e0;
 }
 
 .booked-slot-item.free {
@@ -314,6 +322,7 @@
 .booked-slot-item.notavailable:hover {
   background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
 }
+
 
 /* Modal Styles */
 .modal-overlay {
@@ -420,8 +429,6 @@
   font-size: 14px;
   margin: 1px 0;
 }
-
-
 
 
 

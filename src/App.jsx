@@ -10,7 +10,7 @@ import MainPage from './pages/MainPage';
 import Login from './components/Login';
 import CalendarBook from './components/CalendarBook';
 import PrivateRoute from './components/PrivateRoute';
-import GmailMessages from './components/GmailMessages';
+// import GmailMessages from './components/GmailMessages';
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/calendar" element={<CalendarBook />} />
         <Route path="/calendar" element={<PrivateRoute><CalendarBook /></PrivateRoute>} />
-        <Route path="/gmail" element={<GmailMessages />} />
+        {/* <Route path="/gmail" element={<GmailMessages />} /> */}
       </Routes>
       <Footer />
     </>
